@@ -5,20 +5,20 @@ var demoApp = angular.module('appModule', [ 'ngResource' ]);
 demoApp.config(function($routeProvider, $locationProvider) {
 	
 	$routeProvider.when('/', {
-		templateUrl : '/views/public/home.html'
+		templateUrl : 'partials/index'
 	}).when('/settings', {
-		templateUrl : '/views/settings.html'
+		templateUrl : 'partials/settings'
 	}).when('/about', {
-		templateUrl : '/views/public/about.html'
+		templateUrl : 'partials/about'
 	}).when('/users', {
 		controller : 'UserCtrl',
-		templateUrl : '/views/user/list.html'
+		templateUrl : 'partials/user/list'
 	}).when('/user', {
 		controller : 'AddUserCtrl',
-		templateUrl : '/views/user/detail.html'
+		templateUrl : 'partials/user/detail'
 	}).when('/user/:id', {
 		controller : 'EditUserCtrl',
-		templateUrl : '/views/user/detail.html'
+		templateUrl : 'partials/user/detail'
 	}).otherwise({
 		redirectTo : '/'
 	});
