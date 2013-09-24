@@ -1,0 +1,4 @@
+
+refresh page need disable
+1. add angularjs client
+2. add basic test for db
