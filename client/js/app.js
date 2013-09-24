@@ -3,25 +3,27 @@
 var demoApp = angular.module('appModule', [ 'ngResource' ]);
 
 demoApp.config(function($routeProvider, $locationProvider) {
-	$locationProvider.html5Mode(true);
+	
 	$routeProvider.when('/', {
-		templateUrl : 'views/public/home.html'
+		templateUrl : '/views/public/home.html'
 	}).when('/settings', {
-		templateUrl : 'views/settings.html'
+		templateUrl : '/views/settings.html'
 	}).when('/about', {
-		templateUrl : 'views/public/about.html'
+		templateUrl : '/views/public/about.html'
 	}).when('/users', {
 		controller : 'UserCtrl',
-		templateUrl : 'views/user/list.html'
+		templateUrl : '/views/user/list.html'
 	}).when('/user', {
 		controller : 'AddUserCtrl',
-		templateUrl : 'views/user/detail.html'
+		templateUrl : '/views/user/detail.html'
 	}).when('/user/:id', {
 		controller : 'EditUserCtrl',
-		templateUrl : 'views/user/detail.html'
+		templateUrl : '/views/user/detail.html'
 	}).otherwise({
 		redirectTo : '/'
 	});
+	
+	$locationProvider.html5Mode(true);
 });
 
 demoApp.config(function($httpProvider) {
