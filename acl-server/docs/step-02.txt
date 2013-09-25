@@ -1,0 +1,101 @@
+1. Implement authentication with google-passort.
+
+user logged in can see user list, delete and edit a user. 
+
+var db = require('../lib/db.js');
+var mongojs = require('mongojs');
+
+var authorization = function(email) {
+	return function(req, res, next) {
+		log.console(req.user);
+		next();
+	};
+};
+
+var authenticate = function(req,res,next) {
+	if (!req.isAuthenticated())
+		res.send(401);
+	else
+		next();
+};
+
+module.exports = function(app) {
+	app.get('/api/user', authenticate, authorization, function(req, res) {
+		
+		db.find('user',{},{},10, function(err, users) {
+			if (!err) {
+				return res.send(users);
+			} else {
+				return console.log(err);
+			}
+		});
+	});
+};
+=========================================================================
+
+
+
+
+=========================================================================
+
+
+var express = require('express')
+  , passport = require('passport')
+  , util = require('util')
+  , GoogleStrategy = require('passport-google').Strategy;
+
+var app = express();
+
+app.configure(function(){
+  
+  app.use(express.favicon());
+  //app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+});
+
+app.configure('development', function(){
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+});
+
+app.configure('production', function(){
+  app.use(express.errorHandler());
+});
+
+app.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", 'Content-Type, X-Requested-With');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    next();
+});
+
+//API
+require('./api/user')(app);
+
+app.listen(3000, '0.0.0.0');
+console.log("Express server listening...");
+
+
+=========================================================================
+Authentication - function verifies who you are.
+Authorization - function verifies what you are authorized to do.
+
+
+var needsGroup = function(group) {
+  return function(req, res, next) {
+    if (req.user && req.user.group === group)
+      next();
+    else
+      res.send(401, 'Unauthorized');
+  };
+};
+
+app.get('/api/users', 
+  passport.authenticate('local'),
+  needsGroup('admin'), 
+  function(req, res) {
+    ...
+  });
+  
+  

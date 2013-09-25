@@ -1,7 +1,9 @@
 'use strict';
 
+var apiRoot = 'http://10.100.78.111\\:3000';
+
 demoApp.factory('User', function($resource) {
-	return $resource('http://localhost\\:3000/api/user/:id', {id: '@id'}, {
+	return $resource(apiRoot + '/api/user/:id', {id: '@id'}, {
         update: {method:'PUT'}
     });
 });

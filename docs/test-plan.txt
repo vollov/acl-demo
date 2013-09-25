@@ -1,0 +1,17 @@
+Action | admin   | landlord | guests |    URL 	|		
+  GET		v                        /users 			  
+  GET		v		v                /user/:id		  
+  DELETE	v                        /user/:id		  
+  PUT		v		v(id)            /user			  
+  GET						  v      /login			  
+  GET		v		v(id)            /logout			  
+  GET		v		v		  v      /				  
+  GET		v		v		  v      /rooms			  
+  GET		v                        /room/:id		  
+  DELETE	v                        /room/:id		  
+  PUT		v                        /room			  
+  GET		v		v                /addroom		  
+  POST		v		v(id)            /user/:id/room
+  PUT		v		v(id,rid)        /user/:id/room
+  DELETE	v		v(id,rid)        /user/:id/room/:rid
+  GET		v		v(id,rid)		 /user/:id/room/:rid
