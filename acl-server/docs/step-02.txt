@@ -32,9 +32,22 @@ module.exports = function(app) {
 	});
 };
 =========================================================================
+api/auth.js
 
-
-
+module.exports = function(app) {
+	app.get('/api/loggedin', function(req, res) {
+		res.send(req.isAuthenticated()? req.user : '0');
+	});
+	
+	app.post('/api/login', function(req, res){
+		res.send(req.user);
+	});
+	
+	app.get('/api/logout', function(req, res){
+		req.logout();
+		res.send(200);
+	});
+};
 
 =========================================================================
 
