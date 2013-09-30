@@ -1,5 +1,7 @@
 1. Implement authentication with google-passort.
 
+http://stackoverflow.com/questions/5286073/node-js-server-restart-drops-the-sessions
+
 user logged in can see user list, delete and edit a user. 
 
 var db = require('../lib/db.js');
